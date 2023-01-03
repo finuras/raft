@@ -12,7 +12,7 @@ class RunCommand extends Component
 
     public $manualKeepAlive = false;
 
-    public $command = '';
+    public $command = 'sudo docker ps';
 
     public $cwd = null;
 

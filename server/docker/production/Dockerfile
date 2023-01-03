@@ -69,6 +69,7 @@ COPY ./docker/production/supervisord.conf /etc/supervisor/conf.d/supervisord.con
 # USER
 RUN groupadd --force -g 1000 forge
 RUN useradd -ms /bin/bash --no-user-group -g 1000 -u 1000 forge
+RUN echo 'forge ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN usermod -aG sudo forge
 RUN usermod -aG forge www-data
 RUN chown -R forge:forge /var/www

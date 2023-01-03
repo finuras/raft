@@ -1,10 +1,10 @@
 <div>
     <div>
-        <div>Activity</div>
-        <div>{{ $activity?->id }}</div>
+        <div>Activity ID: <span>{{ $activity?->id }}</span> </div>
 
-        <input wire:model="command" type="text" />
-        <button wire:click="runCommand">
+
+        <input wire:model="command" type="text" class="input w-full max-w-xs"/>
+        <button class="btn btn-primary" wire:click="runCommand">
             Run command
         </button>
     </div>
