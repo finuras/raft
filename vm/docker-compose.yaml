@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  raft-server:
+    image: finuras/raft-server
+    ports:
+      - "5678:80"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/.config/finuras/raft:/.config/finuras/raft

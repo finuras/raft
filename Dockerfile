@@ -1,41 +1,16 @@
-FROM golang:1.19-alpine AS builder
-ENV CGO_ENABLED=0
-WORKDIR /backend
-COPY vm/go.* .
-RUN --mount=type=cache,target=/go/pkg/mod \
-    --mount=type=cache,target=/root/.cache/go-build \
-    go mod download
-COPY vm/. .
-RUN --mount=type=cache,target=/go/pkg/mod \
-    --mount=type=cache,target=/root/.cache/go-build \
-    go build -trimpath -ldflags="-s -w" -o bin/service
+FROM scratch
 
-FROM --platform=$BUILDPLATFORM node:18.9-alpine3.15 AS client-builder
-WORKDIR /ui
-# cache packages in layer
-COPY ui/package.json /ui/package.json
-COPY ui/package-lock.json /ui/package-lock.json
-RUN --mount=type=cache,target=/usr/src/app/.npm \
-    npm set cache /usr/src/app/.npm && \
-    npm ci
-# install
-COPY ui /ui
-RUN npm run build
+LABEL org.opencontainers.image.title="Minimal FrontEnd" \
+    org.opencontainers.image.description="A sample extension that displays a Hello World message from an HTML page." \
+    org.opencontainers.image.vendor="Docker Inc." \
+    com.docker.desktop.extension.api.version=">= 0.3.0" \
+    com.docker.desktop.extension.icon="https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png" \
+    com.docker.extension.screenshots='[{"alt":"hello world light mode", "url":"https://docker-extension-screenshots.s3.amazonaws.com/minimal-frontend/hello-world-light.png"}, {"alt":"hello world dark mode", "url":"https://docker-extension-screenshots.s3.amazonaws.com/minimal-frontend/hello-world-dark.png"}]' \
+    com.docker.extension.detailed-description="<h1>Description</h1><p>This is a sample extension that displays the content of an <code>index.html</code> page inside Docker Desktop.</p>" \
+    com.docker.extension.publisher-url="https://www.docker.com" \
+    com.docker.extension.additional-urls='[{"title":"SDK Documentation","url":"https://docs.docker.com/desktop/extensions-sdk"}]' \
+    com.docker.extension.changelog="<ul><li>Added metadata to provide more information about the extension.</li></ul>"
 
-FROM alpine
-LABEL org.opencontainers.image.title="Raft" \
-    org.opencontainers.image.description="Local web app development support" \
-    org.opencontainers.image.vendor="Finuras" \
-    com.docker.desktop.extension.api.version="0.3.0" \
-    com.docker.extension.screenshots="" \
-    com.docker.extension.detailed-description="" \
-    com.docker.extension.publisher-url="" \
-    com.docker.extension.additional-urls="" \
-    com.docker.extension.changelog=""
-
-COPY --from=builder /backend/bin/service /
-COPY docker-compose.yaml .
+COPY ui ./ui
 COPY metadata.json .
-COPY docker.svg .
-COPY --from=client-builder /ui/build ui
-CMD /service -socket /run/guest-services/extension-raft.sock
+COPY vm/docker-compose.yaml .

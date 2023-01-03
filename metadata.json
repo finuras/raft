@@ -1,19 +1,13 @@
 {
-  "icon": "docker.svg",
-  "vm": {
-    "composefile": "docker-compose.yaml",
-    "exposes": {
-      "socket": "extension-raft.sock"
-    }
-  },
   "ui": {
     "dashboard-tab": {
-      "title": "Raft",
-      "src": "index.html",
-      "root": "ui",
-      "backend": {
-        "socket": "extension-raft.sock"
-      }
+      "title": "Min FrontEnd Extension",
+      "root": "/ui",
+      "src": "index.html"
     }
+  },
+  "vm": {
+    "composefile": "docker-compose.yaml",
+    "exposes": { "socket": "docker.sock" }
   }
 }
