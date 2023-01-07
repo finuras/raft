@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# Inspired on https://github.com/adriancooney/Taskfile
+#
+# Install an alias, to be able to simply execute `run`
+# echo 'alias run=./run' >> ~/.aliases
+#
+# alias run=./Taskfile
+# alias help=./Taskfile help
+
+function help {
+    echo "$0 <task> <args>"
+    echo "Tasks:"
+    compgen -A function | cat -n
+}
+
+function default {
+    help
+}
+
+function ext:build {
+    make build-extension
+}
+
+function ext:install {
+    make install-extension
+}
+
+function ext:update {
+    make update-extension
+}
+
+function ext:uninstall {
+    docker extension rm finuras/raft
+}
+
+function server:dev {
+    cd server ; docker compose up
+}
+
+
+TIMEFORMAT="Task completed in %3lR"
+time "${@:-default}"

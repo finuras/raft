@@ -10,7 +10,7 @@ RUN npm install
 RUN npm run build
 RUN rm -rf node_modules
 
-FROM --platform=linux/amd64 ubuntu:22.04
+FROM ubuntu:22.04
 
 WORKDIR /var/www/html
 
@@ -32,17 +32,12 @@ RUN mkdir -p ~/.gnupg \
         && apt-get update \
     && apt-get install -y php8.1-cli php8.1-fpm nginx cron \
        php8.1-sqlite3 php8.1-gd php8.1-curl \
-       php8.1-imap php8.1-mysql php8.1-mbstring \
-       php8.1-xml php8.1-zip php8.1-bcmath mysql-client \
+       php8.1-mbstring \
+       php8.1-xml php8.1-zip php8.1-bcmath \
        php8.1-intl php8.1-readline \
-       php8.1-msgpack php8.1-igbinary php8.1-redis \
-    && php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer \
-    && apt-get -y autoremove \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+       php8.1-msgpack php8.1-igbinary
 
 # DOCKER-OUTSIDE-OF-DOCKER
-RUN apt-get update
 RUN apt-get install -y gnupg lsb-release sudo
 RUN mkdir -p /etc/apt/keyrings
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --batch --yes --dearmor -o /etc/apt/keyrings/docker.gpg
@@ -75,10 +70,6 @@ RUN usermod -aG forge www-data
 RUN chown -R forge:forge /var/www
 
 COPY --from=build_frontend --chown=forge:forge /app /var/www/html
-
-USER forge
-# PHP DEPENDENCIES
-RUN composer install
 
 EXPOSE 80
 
