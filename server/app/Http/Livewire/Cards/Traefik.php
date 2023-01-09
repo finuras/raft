@@ -38,6 +38,11 @@ class Traefik extends Component
         $this->runCommand('sudo docker compose up -d', $this->composeFolder);
     }
 
+    public function composeDown()
+    {
+        $this->runCommand('sudo docker compose down', $this->composeFolder);
+    }
+
     public function commandFinished($output)
     {
         // null output means that the container was not found

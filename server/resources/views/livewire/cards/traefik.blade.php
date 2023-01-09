@@ -28,6 +28,17 @@
             >
                 Check
             </button>
+
+
+            <button
+                @class([
+                    'btn btn-error',
+                    'loading' => $isKeepAliveOn,
+                ])
+                wire:click="composeDown"
+            >
+                Stop
+            </button>
         </div>
 
         <x-run-command-live-output

@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="mx-auto card my-20 p-4">
+    <div class="prose mx-auto card p-4">
+
+        <h1 class="text-4xl font-bold"> Raft </h1>
+
+        <div class="mt-8"></div>
 
         <livewire:cards.network></livewire:cards.network>
 

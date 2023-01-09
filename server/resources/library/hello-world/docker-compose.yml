@@ -1,0 +1,13 @@
+version: '3'
+
+networks:
+  web:
+    external: true
+
+services:
+  hello_world:
+    image: crccheck/hello-world
+    networks:
+      - web
+    ports:
+      - "3000:80"
