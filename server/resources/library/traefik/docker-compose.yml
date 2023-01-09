@@ -16,7 +16,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-      - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./storage/letsencrypt:/letsencrypt
@@ -37,7 +36,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.traefik.entrypoints=https,http
       - traefik.http.routers.traefik.service=api@internal
-      - traefik.http.routers.traefik.rule=Host(`${DASHBOARD_TRAEFIK_HOST:-traefik.test}`)
+      - traefik.http.routers.traefik.rule=Host(`traefik.test`)
       - traefik.http.services.traefik.loadbalancer.server.port=8080
 
       ## Global redirect to HTTPS
