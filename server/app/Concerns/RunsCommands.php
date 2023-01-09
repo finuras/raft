@@ -10,10 +10,6 @@ trait RunsCommands
 
     public function runCommand($command, $cwd = null)
     {
-        if (! $cwd) {
-            $cwd = config('raft.cwd');
-        }
-
         $this->isKeepAliveOn = true;
 
         $this->activity = activity()

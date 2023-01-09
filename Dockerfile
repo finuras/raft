@@ -1,8 +1,8 @@
 FROM scratch
 
-LABEL org.opencontainers.image.title="Minimal FrontEnd" \
-    org.opencontainers.image.description="A sample extension that displays a Hello World message from an HTML page." \
-    org.opencontainers.image.vendor="Docker Inc." \
+LABEL org.opencontainers.image.title="Finura Raft" \
+    org.opencontainers.image.description="An assistant to develop web applications, with a proxy and SSL." \
+    org.opencontainers.image.vendor="Finuras" \
     com.docker.desktop.extension.api.version=">= 0.3.0" \
     com.docker.desktop.extension.icon="https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png" \
     com.docker.extension.screenshots='[{"alt":"hello world light mode", "url":"https://docker-extension-screenshots.s3.amazonaws.com/minimal-frontend/hello-world-light.png"}, {"alt":"hello world dark mode", "url":"https://docker-extension-screenshots.s3.amazonaws.com/minimal-frontend/hello-world-dark.png"}]' \

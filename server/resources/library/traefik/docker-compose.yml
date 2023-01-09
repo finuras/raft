@@ -9,6 +9,8 @@ services:
     container_name: raft_traefik
     image: traefik:v2.3
     restart: always
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
     networks:
       - web
     ports:
@@ -26,6 +28,10 @@ services:
       - --entrypoints.https.address=:443
       - --providers.docker=true
       - --providers.docker.exposedbydefault=false
+      - --providers.http.endpoint=http://host.docker.internal:5678/traefik-config
+      - --providers.http.pollInterval=3s
+      - --providers.http.pollTimeout=2s
+
     labels:
       ## TRAEFIK ROUTER & DASHBOARD
       - traefik.enable=true

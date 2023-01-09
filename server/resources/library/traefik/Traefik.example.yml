@@ -1,0 +1,16 @@
+http:
+  # Add the router
+  routers:
+    bar-baz:
+      entryPoints:
+        - http
+      service: bar-baz
+      rule: Host(`bar-baz.test`)
+
+  # Add the service
+  services:
+    bar-baz:
+      loadBalancer:
+        servers:
+          - url: http://host.docker.internal:3000
+        passHostHeader: false

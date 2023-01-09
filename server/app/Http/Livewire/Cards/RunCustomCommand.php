@@ -15,7 +15,7 @@ class RunCustomCommand extends Component
 
     public function mount($cwd = null)
     {
-        $this->cwd = config('raft.cwd');
+        $this->cwd = $cwd;
     }
 
     public function run()

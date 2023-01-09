@@ -10,7 +10,7 @@ services:
     volumes:
       - '.:/var/www/html'
       - '/var/run/docker.sock:/var/run/docker.sock'
-      - '~/.config/finuras/raft:/.config/finuras/raft'
+      - '~/.config/finuras/raft:/var/www/html/storage/app/raft'
     environment:
       SSL_MODE: 'off'
     ports:
