@@ -17,8 +17,8 @@ There are 2 ways to register virtual hosts:
 ### Roadmap
 - [x] Set up a reverse proxy
 - [ ] Add applications
-  - [x] By adding Docker labels to containers
-  - [x] By manually adding a yaml configuration file (works even without Docker)
+  - [ ] By adding Docker labels to containers
+  - [ ] By manually adding a yaml configuration file (works even without Docker)
   - [ ] Add Applications on the UI (Traefik HTTP discovery) - Is it justified??
 - [ ] Configure virtual hosts (hosts file entries)
 - [ ] Set up local SSL certificates. 
