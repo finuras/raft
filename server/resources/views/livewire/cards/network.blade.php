@@ -1,5 +1,4 @@
 <div>
-
     <div class="card w-96 bg-primary text-primary-content">
         <div class="card-body">
             <h2 class="card-title">Network</h2>
@@ -32,7 +31,7 @@
                 @endif
                 <button
                     @class([
-                        'btn',
+                        'btn btn-accent',
                         'loading' => $isKeepAliveOn,
                     ])
                     wire:click="check"

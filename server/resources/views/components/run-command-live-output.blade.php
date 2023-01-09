@@ -5,17 +5,15 @@
 ></div>
 
 @if($showOutput)
-    <div>Activity ID: <span>{{ $activity?->id }}</span> </div>
+    <div class="text-primary-content">Activity ID: <span>{{ $activity?->id }}</span> </div>
     <pre
         style="
             background-color: #FFFFFF;
-            width: 1200px;
-            height: 600px;
             overflow-y: scroll;
             display: flex;
             flex-direction: column-reverse;
         "
-        class="font-mono"
+        class="font-mono h-[600px] w-[1100px]"
         placeholder="Build output"
     >
         {{ data_get($activity, 'description') }}
@@ -25,6 +23,6 @@
 
     <div>
         <input id="manualKeepAlive" name="manualKeepAlive" type="checkbox" wire:model="manualKeepAlive">
-        <label for="manualKeepAlive"> Force polling </label>
+        <label class="text-primary-content" for="manualKeepAlive"> Force polling </label>
     </div>
 @endif

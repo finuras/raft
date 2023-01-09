@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Cards;
 
 use App\Concerns\RunsCommands;
 use Livewire\Component;
@@ -42,9 +42,9 @@ class Network extends Component
 
     public function commandFinished($output)
     {
-        ray($output);
-
         // null output means that Network was not found
+        // signal: 0 => all ok
+        // signal: 1 => network not found
         if ($output === null) {
             $this->networkStatus = 1;
         } else {
