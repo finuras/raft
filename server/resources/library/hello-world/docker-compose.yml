@@ -1,13 +1,29 @@
 version: '3'
 
 networks:
-  web:
-    external: true
+    web:
+        external: true
 
 services:
-  hello_world:
-    image: crccheck/hello-world
-    networks:
-      - web
-    ports:
-      - "3000:80"
+    hello_world:
+        image: crccheck/hello-world
+        platform: linux/amd64
+        networks:
+            - web
+        ports:
+            - "3000:8000"
+        labels:
+            - traefik.enable=true
+            - traefik.http.routers.hello_world.entrypoints=http
+            - traefik.http.routers.hello_world.rule=Host(`hello-world.test`)
+            - traefik.http.services.hello_world.loadbalancer.server.port=8000
+
+    foobar:
+        image: nginx
+        networks:
+            - web
+        labels:
+            - traefik.enable=true
+            - traefik.http.routers.foobar.entrypoints=http
+            - traefik.http.routers.foobar.rule=Host(`foo-bar.test`)
+            - traefik.http.services.foobar.loadbalancer.server.port=80
