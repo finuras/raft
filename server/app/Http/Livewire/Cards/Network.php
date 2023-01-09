@@ -22,7 +22,7 @@ class Network extends Component
     {
         $command = implode(' ', [
             "sudo docker network ls",
-            "--filter name={$this->networkName}",
+            "--filter name=^{$this->networkName}$",
             "--filter driver=bridge",
             "-q",
         ]);
@@ -43,11 +43,11 @@ class Network extends Component
     public function commandFinished($output)
     {
         // null output means that Network was not found
-        // signal: 0 => all ok
-        // signal: 1 => network not found
         if ($output === null) {
+            // signal: 1 => network not found
             $this->networkStatus = 1;
         } else {
+            // signal: 0 => all ok
             $this->networkStatus = 0;
         }
 

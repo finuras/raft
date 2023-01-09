@@ -5,13 +5,14 @@
 
         <livewire:cards.network></livewire:cards.network>
 
-{{--        <livewire:cards.traefik></livewire:cards.traefik>--}}
-
         <div class="mt-8"></div>
 
-        <livewire:cards.run-custom-command
-            :cwd="base_path()"
-        ></livewire:cards.run-custom-command>
+        <livewire:cards.traefik></livewire:cards.traefik>
+
+{{--        <div class="mt-8"></div>--}}
+{{--        <livewire:cards.run-custom-command--}}
+{{--            :cwd="base_path()"--}}
+{{--        ></livewire:cards.run-custom-command>--}}
 
     </div>
 @endsection
