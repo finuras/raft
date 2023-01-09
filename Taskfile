@@ -34,6 +34,10 @@ function ext:uninstall {
     docker extension rm finuras/raft
 }
 
+function ext:un {
+    ext:uninstall
+}
+
 function server:dev {
     cd server ; docker compose up
 }

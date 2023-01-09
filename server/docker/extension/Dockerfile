@@ -24,5 +24,6 @@ RUN apt-get -y autoremove \
 ## USER
 RUN echo 'webuser ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-
 COPY --chown=webuser:webgroup . /var/www/html
+
+COPY --chmod=755 docker/extension/etc/s6-overlay/ /etc/s6-overlay/

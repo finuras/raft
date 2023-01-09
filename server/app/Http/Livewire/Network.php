@@ -68,7 +68,7 @@ class Network extends Component
               </div>
             </div>
 
-            <x-run-command-live-output :$activity :$isKeepAliveOn :$manualKeepAlive :showOutput="false" />
+            <x-run-command-live-output :$activity :$isKeepAliveOn :$manualKeepAlive :showOutput="true" />
         </div>
 
         blade;

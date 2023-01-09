@@ -1,12 +1,17 @@
+# For more information: https://laravel.com/docs/sail
 version: '3'
 
 services:
   raft:
+    build:
+      context: .
+      dockerfile: ./docker/extension/Dockerfile
     image: finuras/raft-server
     volumes:
+      - '.:/var/www/html'
       - '/var/run/docker.sock:/var/run/docker.sock'
       - '~/.config/finuras/raft:/.config/finuras/raft'
     environment:
       SSL_MODE: 'off'
     ports:
-      - '5678:80'
+      - '${APP_PORT:-80}:80'
