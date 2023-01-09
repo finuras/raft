@@ -11,7 +11,7 @@ class Network extends Component
 
     public $networkName = 'web';
 
-    public $networkStatus = 'checking';
+    public $networkStatus;
 
     public function mount()
     {
@@ -20,57 +20,36 @@ class Network extends Component
 
     public function check()
     {
-        $command = [
+        $command = implode(' ', [
             "sudo docker network ls",
             "--filter name={$this->networkName}",
             "--filter driver=bridge",
-        ];
+            "-q",
+        ]);
 
-        $this->runCommand(implode($command));
+        $this->runCommand($command);
+    }
+
+    public function createNetwork()
+    {
+        $command = implode(' ', [
+            "sudo docker network create",
+            "{$this->networkName}",
+        ]);
+
+        $this->runCommand($command);
     }
 
     public function commandFinished($output)
     {
+        ray($output);
+
+        // null output means that Network was not found
         if ($output === null) {
-
+            $this->networkStatus = 1;
+        } else {
+            $this->networkStatus = 0;
         }
-    }
 
-    public function render()
-    {
-        return <<<'blade'
-        <div>
-
-            <div class="card w-96 bg-primary text-primary-content">
-              <div class="card-body">
-                <h2 class="card-title">Network</h2>
-                <input
-                    wire:model="networkName"
-                    type="text"
-                    placeholder="Network name"
-                    class="input text-black w-full max-w-xs"
-                 />
-
-                 <div class="h-2"></div>
-
-                <div class="card-actions justify-between items-center">
-                    <p> Network OK </p>
-                    <button
-                        @class([
-                            'btn',
-                            'loading' => $isKeepAliveOn,
-                        ])
-                        wire:click="check"
-                    >
-                        Check
-                    </button>
-                </div>
-              </div>
-            </div>
-
-            <x-run-command-live-output :$activity :$isKeepAliveOn :$manualKeepAlive :showOutput="true" />
-        </div>
-
-        blade;
     }
 }
