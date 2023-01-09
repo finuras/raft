@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="mx-auto card w-[1200px] my-20 p-4">
+    <div class="mx-auto card my-20 p-4">
 
         <livewire:cards.network></livewire:cards.network>
 

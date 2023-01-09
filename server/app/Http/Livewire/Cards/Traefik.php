@@ -22,6 +22,8 @@ class Traefik extends Component
 
     public function check()
     {
+        $this->serviceStatus = null;
+
         $command = implode(' ', [
             "sudo docker container ps",
             "--filter name=^raft_traefik$",

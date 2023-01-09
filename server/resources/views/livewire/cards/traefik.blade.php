@@ -41,7 +41,7 @@
             <iframe
                 id="iframe"
                 src="http://traefik.test"
-                class="h-[600px] w-full max-w-[1200px] rounded-lg"
+                class="h-[600px] w-full rounded-lg"
             ></iframe>
 
             <script>

@@ -20,6 +20,8 @@ class Network extends Component
 
     public function check()
     {
+        $this->networkStatus = null;
+
         $command = implode(' ', [
             "sudo docker network ls",
             "--filter name=^{$this->networkName}$",
