@@ -1,10 +1,16 @@
 version: '3'
 
 services:
-  raft-server:
-    image: finuras/raft-server
+  raft:
+    image: finuras/raft-server:ssu-with-docker-cli
+    environment:
+      SSL_MODE: 'off'
+      PHP_POOL_NAME: "raft-www"
     ports:
-      - "5678:80"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ~/.config/finuras/raft:/.config/finuras/raft
+      - '5678:80'
+  raft-queue:
+    image: finuras/raft-server:ssu-with-docker-cli
+    environment:
+      SSL_MODE: 'off'
+      PHP_POOL_NAME: "raft-queue"
+    command: [ "su", "webuser", "-c", "php artisan queue:work --tries=3" ]

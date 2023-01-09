@@ -1,0 +1,46 @@
+version: '3'
+
+networks:
+  web:
+    external: true
+
+services:
+  traefik:
+    container_name: raft_traefik
+    image: traefik:v2.3
+    restart: always
+    networks:
+      - web
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./storage/letsencrypt:/letsencrypt
+      - ./traefik.auth:/auth/traefik.auth
+    command:
+      - --api.dashboard=true
+      - --api.insecure=true
+      - --entrypoints.http.address=:80
+      - --entrypoints.https.address=:443
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+    labels:
+      ## TRAEFIK ROUTER & DASHBOARD
+      - traefik.enable=true
+      - traefik.http.routers.traefik.entrypoints=https,http
+      - traefik.http.routers.traefik.service=api@internal
+      - traefik.http.routers.traefik.rule=Host(`${DASHBOARD_TRAEFIK_HOST:-traefik.test}`)
+      - traefik.http.services.traefik.loadbalancer.server.port=8080
+
+      ## Global redirect to HTTPS
+#      - traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)
+#      - traefik.http.routers.http-catchall.entrypoints=http
+#      - traefik.http.routers.http-catchall.middlewares=redirect-to-https
+
+      ## Middlewares
+#      - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
+
+      ## AUTH
+#      - traefik.http.middlewares.auth.basicauth.usersfile=/auth/traefik.auth

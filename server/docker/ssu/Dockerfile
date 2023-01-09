@@ -21,8 +21,8 @@ RUN apt-get -y autoremove \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-## USER§
+## USER
 RUN echo 'webuser ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 
-COPY . /var/www/html
+COPY --chown=webuser:webgroup . /var/www/html

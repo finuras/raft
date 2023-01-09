@@ -24,12 +24,20 @@ class RunCommand extends Component
     public function mount($cwd)
     {
         $this->cwd = $cwd;
+//        $this->cwd = '/.config/finuras/raft';
+//        $this->cwd = resource_path('library/traefik');
+
+        $this->cwd = config('raft.cwd');
+
+
+//        $this->command = 'ls -lah';
+//        $this->command = 'sudo docker compose up -d --force-recreate';
+//        $this->command = 'sudo docker compose stop';
+        $this->command = 'sudo docker compose ps';
     }
 
     public function runCommand()
     {
-        ray()->clearAll();
-
         $this->activity = activity()
             ->withProperty('status', 'running')
             ->log("Running command...\n\n");
