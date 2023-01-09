@@ -5,9 +5,10 @@ A Docker extension to assist in web applications development.
   - Different domains are routed to different applications running in your machine.
 
 Roadmap:
-- Configure virtual hosts
-- Set up local SSL certificates.
+- Configure virtual hosts (hosts file entries)
+- Set up local SSL certificates. 
   - Not only you're mimicking the production environment, you can now also develop SSL-only browser API features.
+  - Example: https://github.com/FiloSottile/mkcert
 
 ### Concept
 
@@ -16,8 +17,9 @@ Currently, only Traefik is supported as reverse proxy. Maybe we can add more in 
 There are 2 ways to register virtual hosts:
 - Use your local containers in the "web" network, and add labels so that Traefik discovers configuration.
   - Those labels are: 
-- Add a config file in your home folder: (to be continued)
-
+- If you're not using Docker on a project, or want to have total control, add a custom config file yourself.
+  - Manually configure any advanced configuration
+  
 ### Architecture
 
 Basically, the extension's UI is a redirect to a full stack app, that is declared in the extension's vm.
