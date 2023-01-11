@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/extension/Dockerfile
-    image: finuras/sidecar-assistant
+    image: finuras/sidecar-service
     volumes:
       - '.:/var/www/html'
       - '/var/run/docker.sock:/var/run/docker.sock'
