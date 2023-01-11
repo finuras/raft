@@ -1,4 +1,4 @@
-## Raft
+## Sidecar
 
 A Docker extension to assist in web applications development.
 - Easily set up a proxy, so that you can have multiple applications (virtual hosts).

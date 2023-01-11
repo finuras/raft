@@ -31,7 +31,7 @@ function ext:update {
 }
 
 function ext:uninstall {
-    docker extension rm finuras/raft
+    docker extension rm finuras/sidecar
 }
 
 function ext:un {

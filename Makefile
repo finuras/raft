@@ -1,4 +1,4 @@
-IMAGE?=finuras/raft
+IMAGE?=finuras/sidecar
 TAG?=latest
 
 BUILDER=buildx-multi-arch

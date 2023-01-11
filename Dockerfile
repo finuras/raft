@@ -1,6 +1,6 @@
 FROM scratch
 
-LABEL org.opencontainers.image.title="Sidecar - Local Webapps" \
+LABEL org.opencontainers.image.title="Sidecar" \
     org.opencontainers.image.description="An assistant that helps with the development of web applications. It includes a feature for setting up a proxy (have multiple web apps running at same time, with a local TLD), as well as support for Secure Sockets Layer (SSL)." \
     org.opencontainers.image.vendor="Finuras" \
     com.docker.desktop.extension.api.version=">= 0.3.0" \
