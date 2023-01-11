@@ -2,15 +2,15 @@
 version: '3'
 
 services:
-  raft:
+  sidecar:
     build:
       context: .
       dockerfile: ./docker/extension/Dockerfile
-    image: finuras/raft-server
+    image: finuras/sidecar-assistant
     volumes:
       - '.:/var/www/html'
       - '/var/run/docker.sock:/var/run/docker.sock'
-      - '~/.config/finuras/raft:/var/www/html/storage/app/raft'
+      - '~/.config/finuras/sidecar:/var/www/html/storage/app/sidecar'
     environment:
       SSL_MODE: 'off'
     ports:

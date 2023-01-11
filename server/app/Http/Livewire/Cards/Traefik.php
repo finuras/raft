@@ -26,7 +26,7 @@ class Traefik extends Component
 
         $command = implode(' ', [
             "sudo docker container ps",
-            "--filter name=^raft_traefik$",
+            "--filter name=^sidecar_traefik$",
             "-q",
         ]);
 

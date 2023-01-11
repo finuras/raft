@@ -3,7 +3,7 @@
 @section('content')
     <div class="prose mx-auto card p-4">
 
-        <h1 class="text-4xl font-bold"> Raft </h1>
+        <h1 class="text-4xl font-bold"> Sidecar </h1>
 
         <div class="mt-8"></div>
 

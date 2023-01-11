@@ -6,7 +6,7 @@ networks:
 
 services:
   traefik:
-    container_name: raft_traefik
+    container_name: sidecar_traefik
     image: traefik:v2.3
     restart: always
     extra_hosts:
