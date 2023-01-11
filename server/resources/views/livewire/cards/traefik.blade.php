@@ -51,7 +51,7 @@
         <div>
             <iframe
                 id="iframe"
-                src="http://traefik.test"
+                src="http://localhost:5679"
                 class="h-[600px] w-full rounded-lg"
             ></iframe>
 
