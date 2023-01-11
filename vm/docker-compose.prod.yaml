@@ -1,11 +1,13 @@
 version: '3'
 
 services:
-  raft:
+  sidecar-service:
     image: finuras/sidecar-service
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
-      - '~/.config/finuras/raft:/.config/finuras/sidecar'
+      - '~/.config/finuras/sidecar:/.config/finuras/sidecar'
     environment:
       SSL_MODE: 'off'
     ports:

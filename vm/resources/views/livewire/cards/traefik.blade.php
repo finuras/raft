@@ -24,7 +24,7 @@
                     'btn btn-accent',
                     'loading' => $isKeepAliveOn,
                 ])
-                wire:click="check"
+                wire:click="checkTraefikService"
             >
                 Check
             </button>
@@ -49,15 +49,22 @@
         />
 
         <div>
-            <iframe
-                id="iframe"
-                src="http://localhost:5679"
-                class="h-[600px] w-full rounded-lg"
-            ></iframe>
+            <div>
+                @if($isTraefikDashboardUp)
+                    <iframe
+                        id="iframe"
+                        src="http://localhost:5679"
+                        class="h-[600px] w-full rounded-lg"
+                    ></iframe>
+                @endif
+            </div>
 
             <script>
+                const traefikFrame = document.getElementById('iframe');
                 window.addEventListener('resize', () => {
-                    document.getElementById('iframe').width = window.innerWidth
+                    if (traefikFrame) {
+                        traefikFrame.width = window.innerWidth
+                    }
                 })
             </script>
         </div>

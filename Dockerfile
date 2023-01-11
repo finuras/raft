@@ -13,4 +13,4 @@ LABEL org.opencontainers.image.title="Sidecar" \
 
 COPY ui ./ui
 COPY metadata.json .
-COPY vm/docker-compose.yaml .
+COPY vm/docker-compose.prod.yaml ./docker-compose.yaml
